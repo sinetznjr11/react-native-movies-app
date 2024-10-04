@@ -4,6 +4,7 @@ import { useState } from "react";
 import { search } from "../../services/apiClient";
 import MoviesList from "../lists/MoviesList";
 import Loading from "../Loading";
+import { Keyboard } from "react-native";
 
 const SearchContainer = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState();
@@ -11,6 +12,7 @@ const SearchContainer = ({ navigation }) => {
   const [type, setType] = useState("movie");
 
   const performSearch = async (query) => {
+    Keyboard.dismiss();
     setIsLoading(true);
     search(type, query)
       .then((data) => {
